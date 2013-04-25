@@ -57,8 +57,8 @@ Next, add a permitter for each controller that uses `ActionController::Permittan
 
 For `/app/controllers/deals_controller.rb`, you would add a `/app/permitters/deal_permitter.rb`:
 
-    class DealPermitter < ApplicationPermitter
-      # No premissions reuqired to set this
+    class DealPermitter < ActionController::Permitter
+      # No premissions required to set this
       permit :name, :description, :close_by, :state
 
       # can pass `:authorize` with a permission:
@@ -95,7 +95,7 @@ If the controller is namespaced, the permitter should have the same namespace, e
 
 If you need to override the argument(s) to pass into the require, use `resource` in the permitter:
 
-    class DealPermitter < ApplicationPermitter
+    class DealPermitter < ActionController::Permitter
       resource :deal
       # ...
     end

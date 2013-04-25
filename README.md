@@ -1,4 +1,5 @@
-# Permitters [![Build Status](https://secure.travis-ci.org/permitters/permitters.png?branch=master)](http://travis-ci.org/permitters/permitters)
+[![Build Status](https://secure.travis-ci.org/permitters/permitters.png?branch=master)](http://travis-ci.org/permitters/permitters) [![Gem Version](https://badge.fury.io/rb/permitters.png)](http://badge.fury.io/rb/permitters)
+# Permitters
 
 Permitters are an object-oriented way of defining what request parameters are permitted using [Strong Parameters][strong_parameters]. It is to Strong Parameters what ActiveModel::Serializers are to as_json/to_json.
 

@@ -9,7 +9,7 @@ task :default do |t|
   if ENV['BUNDLE_GEMFILE'] =~ /gemfiles/
     exec 'rake spec'
   else
-    Rake::Task['appraise'].execute
+    exec 'rake appraise'
   end
 end
 

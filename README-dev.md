@@ -5,4 +5,4 @@
 
 ### Running tests
 
-    rake appraise
+    rake

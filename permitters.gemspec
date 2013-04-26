@@ -14,7 +14,4 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   # NO! this is part of Rails 4 and Rails 4.0.0.beta1 will barf with "no superclass method `sanitize_for_mass_assignment'" errors if 2.0.0 included
   #s.add_runtime_dependency 'strong_parameters', '>= 0.1.3'
-  s.add_development_dependency 'bundler', '>= 1.2.2'
-  s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'simplecov'
 end

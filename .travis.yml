@@ -1,5 +1,6 @@
 language: ruby
 rvm:
+  - 2.0.0
   - 1.9.3
-gemfile:
-  - gemfiles/*.gemfile
+# Don't list gemfiles here. Wildcards not supported so would have to keep in sync with each name in gemfiles/*.
+# This results in less work for Travis CI and faster feedback for us, even if it means we stop on first failed appraisal.

@@ -34,20 +34,8 @@ untitled
 # Ignore gems
 **.gem
 
-# Test against latest versions that match requirements in Travis.
-#
-# Cons:
-# * takes longer for Travis build :(
-# * has the potential for someone not cleaning their gemfiles directories to have a diff
-#   result than Travis, but allows faster local dev appraisals after the first is run
-# * relies on Gemfile/.gemspec to be locked to minor versions of each dependency (even
-#   though that is best practice).
-#
-# Pros: (which outweigh the cons, imo)
-# * requires less maintenance to use more recent dependencies
-# * get faster feedback after changes to dependencies
-#
-/gemfiles
+# ignore temp files
+/gemfiles/tmp
 
 # ignore temp/log files in dummy
 /spec/dummy/tmp

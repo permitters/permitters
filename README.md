@@ -280,8 +280,8 @@ See the [changelog][changelog].
 
 ### Contributors
 
-* Adam Hawkins (https://github.com/twinturbo)
-* Gary Weaver (https://github.com/garysweaver)
+* [Adam Hawkins](https://github.com/ahawkins)
+* [Gary Weaver](https://github.com/garysweaver)
 
 ### License
 

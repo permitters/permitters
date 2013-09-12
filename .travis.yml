@@ -2,3 +2,15 @@ language: ruby
 rvm:
   - 2.0.0
   - 1.9.3
+gemfile:
+  - gemfiles/rails_4.0.x.gemfile
+  - gemfiles/rails_3.2.x_with_strong_parameters_edge.gemfile
+  - gemfiles/rails_3.2.x_with_strong_parameters.gemfile
+  - gemfiles/rails_3.1.x_with_strong_parameters_edge.gemfile
+  - gemfiles/rails_3.1.x_with_strong_parameters.gemfile
+matrix:
+  exclude:
+    - rvm: 2.0.0
+      gemfile:
+        - gemfiles/rails_3.1.x_with_strong_parameters_edge.gemfile
+        - gemfiles/rails_3.1.x_with_strong_parameters.gemfile

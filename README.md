@@ -82,7 +82,7 @@ class DealPermitter < ActionController::Permitter
   permit :name, :description, :close_by, :state
 
   # For non-scalar serialized attributes such as `Deal.serialize :favorite_colors, Array`
-  permit({:favorite_colors => [], {})
+  permit({:favorite_colors => [], {}})
 
   # can pass `:authorize` with a permission:
   # This line allows user_id if the user can read the user specified

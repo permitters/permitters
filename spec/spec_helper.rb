@@ -1,12 +1,10 @@
 ENV['RAILS_ENV'] = 'test'
 
-unless ENV['CI']
-  require 'simplecov'
-  SimpleCov.start do
-    add_filter '/gemfiles/'
-    add_filter '/spec/'
-    add_filter '/temp/'
-  end
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/gemfiles/'
+  add_filter '/spec/'
+  add_filter '/temp/'
 end
 
 spv = ''

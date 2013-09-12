@@ -11,6 +11,6 @@ gem "simplecov", "~> 0.7.1"
 gem "sqlite3"
 gem "rails", "~> 3.2"
 gem "bundler", ">= 1.2.2"
-gem "strong_parameters", :git=>"git://github.com/rails/strong_parameters.git"
+gem "strong_parameters"
 
 gemspec :path=>"../"

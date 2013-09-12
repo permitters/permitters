@@ -12,7 +12,7 @@ The original version of the Permitters framework that this was based on was prov
 In your Rails app's `Gemfile`:
 
 ```ruby
-gem 'permitters', '~> 0.0.1'
+gem 'permitters'
 ```
 
 Then:
@@ -285,6 +285,7 @@ See the [changelog][changelog].
 
 * [Adam Hawkins](https://github.com/ahawkins)
 * [Gary Weaver](https://github.com/garysweaver)
+* [Mark Campbell](https://github.com/Nitrodist)
 
 ### License
 

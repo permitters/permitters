@@ -1,4 +1,5 @@
 language: ruby
+bundler_args: --without not_ci
 rvm:
   - 2.0.0
   - 1.9.3

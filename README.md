@@ -289,7 +289,7 @@ See the [changelog][changelog].
 
 ### License
 
-Copyright (c) 2013 Adam Hawkins and Gary S. Weaver, released under the [MIT license][lic].
+Permitters is released under the [MIT license][lic].
 
 [post]: http://broadcastingadam.com/2012/07/parameter_authorization_in_rails_apis/
 [cancan]: https://github.com/ryanb/cancan

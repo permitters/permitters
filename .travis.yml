@@ -1,18 +1,5 @@
 language: ruby
-bundler_args: --without not_ci
 rvm:
   - 2.0.0
   - 1.9.3
-gemfile:
-  - gemfiles/rails_4.0.x.gemfile
-  - gemfiles/rails_3.2.x_with_strong_parameters.gemfile
-  - gemfiles/rails_3.1.x_with_strong_parameters.gemfile
-matrix:
-  exclude:
-    - rvm: 1.9.3
-      gemfile:
-        - gemfiles/rails_4.0.x.gemfile
-    - rvm: 2.0.0
-      gemfile:
-        - gemfiles/rails_3.2.x_with_strong_parameters.gemfile
-        - gemfiles/rails_3.1.x_with_strong_parameters.gemfile
+script: 'rake appraisal:install && rake appraisal'

@@ -43,3 +43,7 @@ untitled
 
 # ignore reports
 /coverage
+
+# ignore lock files
+Gemfile.lock
+/gemfiles/*.lock

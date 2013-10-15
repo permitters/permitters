@@ -286,6 +286,7 @@ See the [changelog][changelog].
 * [Adam Hawkins](https://github.com/ahawkins)
 * [Gary Weaver](https://github.com/garysweaver)
 * [Mark Campbell](https://github.com/Nitrodist)
+* [Alex Peattie](https://github.com/alexpeattie)
 
 ### License
 

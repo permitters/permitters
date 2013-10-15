@@ -196,3 +196,22 @@ describe 'With no auth configured' do
 
   it_should_behave_like 'valid employee controllers'
 end
+
+describe 'Without a current_user method' do
+  before(:each) do
+    ApplicationController.tap do |app|
+      app.send :alias_method, :old_current_user, :current_user
+      app.send :remove_method, :current_user
+      app.any_instance.stub(:authorize!)
+    end
+  end
+
+  after(:each) do
+    ApplicationController.tap do |app|
+      app.send :alias_method, :current_user, :old_current_user
+      app.any_instance.unstub(:authorize!)
+    end
+  end
+
+  it_should_behave_like 'valid employee controllers'
+end

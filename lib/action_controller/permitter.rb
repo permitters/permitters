@@ -12,17 +12,10 @@ module ActionController
       # To change this value, use the `resource` class method.
       def inherited(subclass)
         subclass.class_eval do
-          class_attribute :permitted_attributes
-          class_attribute :resource_name
+          class_attribute :permitted_attributes, :resource_name_override
+          private_class_method :resource_name_override, :resource_name_override=
 
           self.permitted_attributes = []
-          name = self.name
-
-          # in Rails 3.2+ could do:
-          # name.demodulize.chomp('Permitter').underscore.to_sym
-          # Rails < 3.2
-          last_index = name.rindex('::')
-          self.resource_name = (last_index ? name[(last_index+2)..-1] : name).chomp('Permitter').underscore.to_sym
         end
       end
 
@@ -41,7 +34,17 @@ module ActionController
       end
 
       def resource(name)
-        self.resource_name = name
+        self.resource_name_override = name
+      end
+
+      def resource_name
+        name = self.name
+
+        # in Rails 3.2+ could do:
+        # name.demodulize.chomp('Permitter').underscore.to_sym
+        # Rails < 3.2
+        last_index = name.rindex('::')
+        resource_name_override || (last_index ? name[(last_index+2)..-1] : name).chomp('Permitter').underscore.to_sym
       end
     end
 
@@ -81,6 +84,9 @@ module ActionController
       authorizer ? authorizer.__send__(:authorize!, *args, &block) : nil
     end
 
+    def resource_name
+      self.class.resource_name
+    end
 
   private
 

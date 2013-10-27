@@ -2,13 +2,18 @@ require 'rails'
 require 'spec_helper'
 
 shared_examples_for 'valid employee controllers' do
+  # turn on error raising for unpermitted parameters for 
+  # easier testing
+  before(:all) do
+    ActionController::Parameters.action_on_unpermitted_parameters = :raise
+  end
+  after(:all) do
+    ActionController::Parameters.action_on_unpermitted_parameters = :log
+  end
+
+  let!(:unpermitted) { ActionController::UnpermittedParameters }
+
   describe ::EmployeesController do
-
-    before(:each) do
-    end
-
-    after(:each) do
-    end
 
     describe "POST create" do
       it 'allowed for accepted params' do
@@ -16,40 +21,29 @@ shared_examples_for 'valid employee controllers' do
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
         put :create, {employee: {a: name}}
-        response.status.should eq(200), "create failed (got #{response.status}): #{response.body}"
+        expect(response).to be_success, "create failed (got #{response.status}): #{response.body}"
       end
 
       it 'does not accept non-whitelisted params' do
         ::EmployeesController.test_role = 'admin'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
-        begin
-          put :create, {employee: {b: name}}
-          fail "permitters should not allow put" if response.status < 400
-        rescue
-        end
+        
+        expect { put :create, {employee: {b: name}} }.to raise_error(unpermitted),
+               'permitters should not allow put'
       end
 
       it 'does not accept whitelisted params when cancan disallows user', if: @auth_configured do
         ::EmployeesController.test_role = 'nobody'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
-        begin
-          put :create, {employee: {a: name}}
-          fail "cancan should not allow put" if response.status < 400
-        rescue
-        end
+        expect { put :create, {employee: {a: name}} }.to raise_error(unpermitted),
+               'cancan should not allow put'
       end
     end
   end
 
   describe ::Admin::EmployeesController do
-
-    before(:each) do
-    end
-
-    after(:each) do
-    end
 
     describe "POST create" do
       it 'allowed for accepted params' do
@@ -57,70 +51,51 @@ shared_examples_for 'valid employee controllers' do
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
         put :create, {employee: {b: name}}
-        response.status.should eq(200), "create failed (got #{response.status}): #{response.body}"
+        expect(response).to be_success, "create failed (got #{response.status}): #{response.body}"
       end
 
       it 'does not accept non-whitelisted params' do
         ::Admin::EmployeesController.test_role = 'admin'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
-        begin
-          put :create, {employee: {a: name}}
-          fail "permitters should not allow put" if response.status < 400
-        rescue
-        end
+        expect { put :create, {employee: {a: name}} }.to raise_error(unpermitted),
+               'permitters should not allow put'
       end
 
       it 'does not accept whitelisted params when cancan disallows user', if: @auth_configured do
         ::Admin::EmployeesController.test_role = 'nobody'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
-        begin
-          put :create, {employee: {b: name}}
-          fail "cancan should not allow put" if response.status < 400
-        rescue
-        end
+        expect { put :create, {employee: {b: name}} }.to raise_error(unpermitted),
+               'cancan should not allow put'
       end
     end
   end
 
   describe ::Admin::HumanResources::EmployeesController do
-
-    before(:each) do
-    end
-
-    after(:each) do
-    end
-
     describe "POST create" do
       it 'allowed for accepted params' do
         ::Admin::HumanResources::EmployeesController.test_role = 'admin'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
         put :create, {employee: {c: name}}
-        response.status.should eq(200), "create failed (got #{response.status}): #{response.body}"
+        expect(response).to be_success, "create failed (got #{response.status}): #{response.body}"
       end
 
       it 'does not accept non-whitelisted params' do
         ::Admin::HumanResources::EmployeesController.test_role = 'admin'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
-        begin
-          put :create, {employee: {a: name}}
-          fail "permitters should not allow put" if response.status < 400
-        rescue
-        end
+        expect { put :create, {employee: {a: name}} }.to raise_error(unpermitted),
+               'permitters should not allow put'
       end
 
       it 'does not accept whitelisted params when cancan disallows user', if: @auth_configured do
         ::Admin::HumanResources::EmployeesController.test_role = 'nobody'
         ::Employee.delete_all
         name = ::SecureRandom.urlsafe_base64
-        begin
-          put :create, {employee: {c: name}}
-          fail "cancan should not allow put" if response.status < 400
-        rescue
-        end
+        expect { put :create, {employee: {c: name}} }.to raise_error(unpermitted),
+               'cancan should not allow put'
       end
     end
   end

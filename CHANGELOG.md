@@ -1,3 +1,7 @@
+## permitters 0.0.3
+
+* Raise error if permit cannot glean class name - Gary Weaver
+
 ## permitters 0.0.2
 
 * Allow permitters to be used without a current_user - Alex Peattie

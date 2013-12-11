@@ -1,5 +1,7 @@
 module ActionController
   class PermitterAttribute < Struct.new(:name, :options); end
+  class PermitterError < StandardError #:nodoc:
+  end 
   class Permitter
 
     # Application-wide configuration
@@ -67,7 +69,9 @@ module ActionController
       permitted_attributes.select {|a| a.options[:authorize]}.each do |attribute|
         scope_name = attribute.options[:scope]
         values = scope_name ? Array.wrap(@filtered_params[scope_name]).collect {|hash| hash[attribute.name]}.compact : Array.wrap(@filtered_params[attribute.name])
-        klass = (attribute.options[:as].try(:to_s) || attribute.name.to_s.split(/(.+)_ids?/)[1]).classify.constantize
+        klass_name = attribute.options[:as].try(:to_s) || attribute.name.to_s.split(/(.+)_ids?/)[1]
+        raise PermitterError.new("Cannot permit #{attribute.name.inspect} unless you specify the the attribute name (e.g. :something_id or :something_ids), or a class name via the :as option (e.g. :as => Something)") unless klass_name
+        klass = klass_name.classify.constantize
 
         values.each do |record_id|
           record = klass.find record_id

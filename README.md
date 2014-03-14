@@ -230,18 +230,20 @@ class SomeAuthorizer
 end
 ```
 
-##### CanCan
+##### CanCan(Can)
 
-[CanCan][cancan] is able to integrate with the Permitters framework as an authorizer. To use CanCan, put this into your app config:
+_(Note to self: this section can use more cans.)_
+
+[CanCanCan][cancancan]/[CanCan][cancan] can integrate with the Permitters framework as an authorizer. To use CanCan(Can), you can put this into your app config:
 
 ```ruby
 config.action_controller.authorizer = 'Ability'
 config.action_controller.current_authorizer_method = 'current_ability'
 ```
 
-(Note: You could just define either. If you don't set current_authorizer_method, it will just try creating an instance of the authorizer using the current user. If neither are specified, nothing will happen when `authorize!(permission, record)` is called.)
+(Note: You can define either. If you don't set current_authorizer_method, it can try creating an instance of the authorizer using the current user. If neither are specified, nothing can happen when `authorize!(permission, record)` is called.)
 
-CanCan can integrate with [Authlogic][authlogic], [Devise][devise], etc. to return a proper logged-in user, or you can return it however you wish from the `current_user` method in your controller. Just to provide a simple example, we'll pretend the user was logged-in and return a new User instance (which means you will need a User model):
+CanCan(Can) can integrate with [Authlogic][authlogic], [Devise][devise], etc. to return a proper logged-in user, or you can return it however you wish from the `current_user` method in your controller. Just to provide a simple example, we can pretend the user was logged-in and can return a new User instance (which means you will need a User model):
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -253,7 +255,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-Again for simplicity, we'll write an "allow-everything" Ability in `app/models/ability.rb`:
+For simplicity, we can write an "allow-everything" Ability in `app/models/ability.rb`:
 
 ```ruby
 class Ability
@@ -265,13 +267,13 @@ class Ability
 end
 ```
 
-Then in each model you want to use CanCan with, add this into the class:
+In each model you use CanCan(Can) with, you can add this into the class:
 
 ```ruby
 include CanCan::ModelAdditions
 ```
 
-If you'd rather use CanCan with all models, just put this at the bottom of your `config/environment.rb` or an initializer:
+To use CanCan(Can) with all models, you can put this at the bottom of your `config/environment.rb` or an initializer:
 
 ```ruby
 ActiveRecord::Base.send :include, CanCan::ModelAdditions
@@ -293,6 +295,7 @@ See the [changelog][changelog].
 Permitters is released under the [MIT license][lic].
 
 [post]: http://broadcastingadam.com/2012/07/parameter_authorization_in_rails_apis/
+[cancancan]: https://github.com/CanCanCommunity/cancancan
 [cancan]: https://github.com/ryanb/cancan
 [strong_parameters]: https://github.com/rails/strong_parameters
 [authlogic]: https://github.com/binarylogic/authlogic

@@ -4,8 +4,13 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
+# See .travis.yml for ruby versions we test with
+.ruby-gemset
+.ruby-version
+
 # Ignore bundler config
 /.bundle
+gemfiles/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

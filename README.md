@@ -117,7 +117,7 @@ When you call `permitted_params`, this happens:
 params.require(:deal).permit(:name, :description, :close_by, :state, :line_items_attributes => [:id, :name, :quantity, :price, :currency, :notes, product_id])
 ```
 
-If the controller is namespaced, the permitter should have the same namespace, e.g. `A:B:DealsController` defined in `app/controllers/a/b/deals_controller.rb` requires `A:B:DealPermitter` defined in  `/app/a/b/permitters/deal_permitter.rb`.
+If the controller is namespaced, the permitter should have the same namespace, e.g. `A:B:DealsController` defined in `app/controllers/a/b/deals_controller.rb` requires `A:B:DealPermitter` defined in  `/app/permitters/a/b/deal_permitter.rb`.
 
 If you need to override the argument(s) to pass into the require, use `resource` in the permitter:
 

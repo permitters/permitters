@@ -287,6 +287,7 @@ See the [changelog][changelog].
 
 * [Adam Hawkins](https://github.com/ahawkins)
 * [Gary Weaver](https://github.com/garysweaver)
+* [Filippo Zanella](https://github.com/r4m)
 * [Mark Campbell](https://github.com/Nitrodist)
 * [Alex Peattie](https://github.com/alexpeattie)
 

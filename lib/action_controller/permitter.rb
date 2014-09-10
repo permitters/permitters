@@ -57,6 +57,7 @@ module ActionController
     def permitted_params
       scopes = {}
       unscoped_attributes = []
+      nil_attributes = []
 
       permitted_attributes.each do |attribute|
         scope_name = attribute.options[:scope]
@@ -79,11 +80,13 @@ module ActionController
           unless record.nil?
             permission = attribute.options[:authorize].to_sym || :read
             authorize! permission, record
+          else
+            nil_attributes.push attribute.name
           end
         end
       end
 
-      @filtered_params
+      return @filtered_params, nil_attributes
     end
 
     def authorize!(*args, &block)

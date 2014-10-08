@@ -57,7 +57,6 @@ module ActionController
     def permitted_params
       scopes = {}
       unscoped_attributes = []
-      nil_attributes = []
 
       permitted_attributes.each do |attribute|
         scope_name = attribute.options[:scope]
@@ -75,18 +74,13 @@ module ActionController
         klass = klass_name.classify.constantize
 
         values.each do |record_id|
-          dependency_type = attribute.options[:dependent]
-          record = dependency_type == :nullify ? klass.find_by(id: record_id) : klass.find(record_id)
-          unless record.nil?
-            permission = attribute.options[:authorize].to_sym || :read
-            authorize! permission, record
-          else
-            nil_attributes.push attribute.name
-          end
+          record = klass.find record_id
+          permission = attribute.options[:authorize].to_sym || :read
+          authorize! permission, record
         end
       end
 
-      return @filtered_params, nil_attributes
+      @filtered_params
     end
 
     def authorize!(*args, &block)
